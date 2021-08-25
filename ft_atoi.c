@@ -1,26 +1,26 @@
-int	ft_atoi(char *str)
+int	ft_atoi(char *nptr)
 {
-	int	n;
 	int	res;
-	int	neg;
+	int	signe;
+	int	n;
 
 	n = 0;
-	neg = 0;
+	signe = 0;
 	res = 0;
-	while (str[n] == ' ' || str[n] == '\t' || str[n] == '\r' || str[n] == '\n')
+	while (nptr[n] == ' ' || nptr[n] == '\n' || nptr[n] == '\t')
 		n++;
-	while (str[n] == '-' || str[n] == '+')
+	if (nptr[n] == '-' || nptr[n] == '+')
 	{
-		if (str[n] == '-')
-			neg = 1 - neg;
+		if (nptr[n] == '-')
+			signe = 1 - signe;
 		n++;
 	}
-	while (str[n] >= '0' && str[n] <= '9')
+	while (nptr[n] >= 48 && nptr[n] <= 57)
 	{
-		res = res * 10 + (str[n] - 48);
+		res = res * 10 + nptr[n] - 48;
 		n++;
 	}
-	if (neg == 1)
+	if (signe == 1)
 		res = res * -1;
 	return (res);
 }
@@ -30,9 +30,9 @@ int	ft_atoi(char *str)
 
 int	main()
 {
-	char	nb[] = "-+42a42";
-	printf("%d\n", atoi(nb));
-	printf("%d\n", ft_atoi(nb));
-	return(0);
+	char n[] = "\n    +42222229";
+	printf("%d\n", atoi(n));
+	printf("%d\n", ft_atoi(n));
+	return (0);
 }
 */

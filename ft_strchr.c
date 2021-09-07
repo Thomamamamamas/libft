@@ -1,12 +1,17 @@
 char	*ft_strchr(char *s, int c)
 {
-	while (*s)
+	int	i;
+
+	i = 0;
+	while (s[i])
 	{
-		if (*s == c)
-			return (s);
-		*s++;
+		if (s[i] == c)
+			return ((char *)s + i);
+		i = i + 1;
 	}
-	return (0);
+	if (c != '\0')
+		return (0);
+	return ((char *)s + i);
 }
 /*
 #include <string.h>

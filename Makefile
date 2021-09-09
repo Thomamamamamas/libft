@@ -1,14 +1,15 @@
 NAME = test
-SRC = ftputchar.c
+SRC = ft_putnbr.c
 
 all : $(NAME):
 
-$(NAME): gcc -o $(NAME) $(SRC)
+$(NAME): 
+	gcc -o $(NAME) $(SRC)
 
 clean: 
-	rm -f *.o
+	/bin/rm -f *.o
 
 fclean: clean
-	rm -f $(NAME)
+	/bin/rm -f $(NAME)
 
 re: fclean all

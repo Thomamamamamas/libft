@@ -1,10 +1,10 @@
-NAME = test
-SRC = ft_putnbr.c
+NAME="libft.a"
+SRCS="srcs/*.c"
 
 all : $(NAME):
 
 $(NAME): 
-	gcc -o $(NAME) $(SRC)
+	gcc -c *.c
 
 clean: 
 	/bin/rm -f *.o

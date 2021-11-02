@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tcasale <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/02 14:38:39 by tcasale           #+#    #+#             */
-/*   Updated: 2021/11/02 17:11:27 by tcasale          ###   ########.fr       */
+/*   Created: 2021/11/02 17:10:49 by tcasale           #+#    #+#             */
+/*   Updated: 2021/11/02 17:34:38 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strcpy(char *dest, char *src)
+size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 {
-	int	i;
-	int	len_src;
+	size_t	temp;
+	size_t	n;
 
-	i = 0;
-	len_src = ft_strlen(src) + 1;
-	while (i < len_src)
+	temp = 0;
+	while (src[temp] && temp < size)
 	{
-		dest[i] = src[i];
-		i = i + 1;
+		dest[temp] = src[temp];
+		temp++;
 	}
-	return (dest);
+	n = temp;
+	while (n < size)
+	{
+		dest[n] = '\0';
+		n++;
+	}
+	return (temp);
 }
 /*
 #include <stdio.h>
@@ -33,19 +38,19 @@ int	main()
 {
 	char	*dest;
 	char	*src;
+	size_t	size;
 
-	dest = malloc(sizeof(char) * 1);
+	size = 7;
+	dest = malloc(sizeof(char) * size);
 	src = malloc(sizeof(char) * 5);
 	dest[0] = 'p';
 	dest[1] = 'u';
-	dest[2] = 't';
-	dest[3] = 'e';
 	src[0] = 's';
-	src[1] = 'a';
-	src[2] = 'l';
-	src[3] = 'o';
-	src[4] = 'p';
-	src[5] = 'e';
-	printf("%s\n", ft_strcpy(dest, src));
+	src[1] = 'u';
+	src[2] = 'c';
+	src[3] = 'e';
+	printf("%zu\n", ft_strlcpy(dest, src, size));
+	printf("%s\n", dest);
+	return (0);
 }
 */

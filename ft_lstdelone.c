@@ -1,42 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tcasale <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/02 14:38:27 by tcasale           #+#    #+#             */
-/*   Updated: 2021/11/02 17:37:05 by tcasale          ###   ########.fr       */
+/*   Created: 2021/11/02 16:16:31 by tcasale           #+#    #+#             */
+/*   Updated: 2021/11/02 17:09:00 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(char *s)
+void	*del(void *elt)
 {
-	char	*res;
-	int		len_s;
-	int		i;
-
-	len_s = ft_strlen(s);
-	res = malloc(sizeof(char) * len_s);
-	i = 0;
-	while (res != NULL && s[i])
-	{
-		res[i] = s[i];
-		i = i + 1;
-	}
-	return (res);
+	elt = "";
 }
-/*
-#include <stdio.h>
 
+void	ft_lstdelone(t_list *lst, void (*del) (void *))
+{
+	(del) (lst->content);
+	lst->next = NULL;
+	free(lst);
+}
+
+#include <stdio.h>
 
 int	main()
 {
-	char	s[] = "pute";
+	t_list	*un;
 
-	printf("%s\n", ft_strdup(s));
+	un = (t_list *)malloc(sizeof(t_list));
+	un->content = "pute";
+	ft_lstdelone(un, (*del)(un->next));
+	printf("%s\n", un->content);
 	return (0);
 }
-*/

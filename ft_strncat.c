@@ -1,16 +1,18 @@
-#include <stddef.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strncat.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tcasale <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/11/02 14:49:48 by tcasale           #+#    #+#             */
+/*   Updated: 2021/11/02 14:58:22 by tcasale          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-char	ft_strlen(char *str)
-{
-	int	i;
+#include "libft.h"
 
-	i = 0;
-	while (str[i])
-		i = i + 1;
-	return (i);
-}
-
-char	*ft_strncat(char *dest, char *src, size_t size)
+char	*ft_strncat(char *dest, const char *src, size_t size)
 {
 	size_t	len_dest;
 	size_t	len_src;

@@ -1,24 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tcasale <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/02 14:38:27 by tcasale           #+#    #+#             */
-/*   Updated: 2021/11/02 14:38:29 by tcasale          ###   ########.fr       */
+/*   Created: 2021/10/20 15:21:43 by tcasale           #+#    #+#             */
+/*   Updated: 2021/10/20 16:28:49 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include <stdlib.h>
 
-#include "libft.h"
+static int	ft_cst_strlen(const char	*str)
+{
+	int	n;
 
-char	*ft_strdup(char *s)
+	n = 0;
+	while (str[n])
+		n++;
+	return (n);
+}
+
+static char	*ft_strdup(const char *s)
 {
 	char	*res;
 	int		len_s;
 	int		i;
 
-	len_s = ft_strlen(s);
+	len_s = ft_cst_strlen(s);
 	res = malloc(sizeof(char) * len_s);
 	i = 0;
 	while (res != NULL && s[i])
@@ -28,15 +37,20 @@ char	*ft_strdup(char *s)
 	}
 	return (res);
 }
-/*
-#include <stdio.h>
 
-
-int	main()
+char	*ft_strmapi(const char *s, char (*f)(unsigned int, char))
 {
-	char	s[] = "pute";
+	char	*str;
+	int		n;
 
-	printf("%s\n", ft_strdup(s));
-	return (0);
+	str = ft_strdup(s);
+	if (!str)
+		return (NULL);
+	n = 0;
+	while (str[n])
+	{
+		str[n] = (*f)(n, str[n]);
+		n++;
+	}
+	return (str);
 }
-*/

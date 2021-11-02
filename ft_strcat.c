@@ -1,58 +1,54 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tcasale <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/02 14:43:43 by tcasale           #+#    #+#             */
-/*   Updated: 2021/11/02 14:45:23 by tcasale          ###   ########.fr       */
+/*   Created: 2021/11/02 14:46:43 by tcasale           #+#    #+#             */
+/*   Updated: 2021/11/02 14:58:06 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strncpy(char *dest, char *src, size_t n)
+char	*ft_strcat(char *dest, char *src)
 {
+	size_t	len_dest;
+	size_t	len_src;
 	size_t	i;
 
-	i = 0;
-	while (src[i] && i < n)
+	len_dest = ft_strlen(dest);
+	len_src = ft_strlen(src);
+	while ((i < len_src) && (src[i]))
 	{
-		dest[i] = src[i];
+		dest[len_dest + i] = src[i];
 		i = i + 1;
 	}
-	while (i < n)
-	{
-		dest[i] = '\0';
-		i = i + 1;
-	}
+	dest[len_dest + 1] = '\0';
 	return (dest);
 }
-/*
-#include <string.h>
+
 #include <stdio.h>
-#include <stdlib.h>
 
 int	main()
 {
 	char	*dest;
 	char	*src;
-	size_t	n;
 
-	dest = malloc(sizeof(char) * 1);
-	src = malloc(sizeof(char) * 5);
-	n = 2; 
+	dest = malloc(sizeof (char) * 7);
+	src = malloc(sizeof (char) * 8);
 	dest[0] = 'p';
 	dest[1] = 'u';
 	dest[2] = 't';
 	dest[3] = 'e';
-	src[0] = 's';
-	src[1] = 'a';
-	src[2] = 'l';
-	src[3] = 'o';
-	src[4] = 'p';
-	src[5] = 'e';
-	printf("%s\n", ft_strncpy(dest, src, n));
+	src[0] = 'p';
+	src[1] = 'u';
+	src[2] = 't';
+	src[3] = 'a';
+	src[4] = 's';
+	src[5] = 's';
+	src[6] = 'e';
+	printf("%s\n", ft_strcat(dest, src));
+	return (0);
 }
-*/

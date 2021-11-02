@@ -1,12 +1,16 @@
-int	ft_strlen(char *str)
-{
-	int	n;
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tcasale <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/11/02 14:38:39 by tcasale           #+#    #+#             */
+/*   Updated: 2021/11/02 14:45:34 by tcasale          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-	n = 0;
-	while (str[n])
-		n++;
-	return (n);
-}
+#include "libft.h"
 
 char	*ft_strcpy(char *dest, char *src)
 {
@@ -23,9 +27,7 @@ char	*ft_strcpy(char *dest, char *src)
 	return (dest);
 }
 /*
-#include <string.h>
 #include <stdio.h>
-#include <stdlib.h>
 
 int	main()
 {

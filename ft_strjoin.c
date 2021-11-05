@@ -6,34 +6,26 @@
 /*   By: tcasale <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 12:57:17 by tcasale           #+#    #+#             */
-/*   Updated: 2021/10/20 13:00:29 by tcasale          ###   ########.fr       */
+/*   Updated: 2021/11/05 16:20:21 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include <stdlib.h>
-#include <string.h>
 
-static int	ft_cst_strlen(const char *str)
-{
-	int		n;
-
-	n = 0;
-	while (str[n])
-		n++;
-	return (n);
-}
-
-char	*ft_strjoin(const char *s1, const char *s2)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
 	size_t	n;
 	size_t	m;
 	char	*str;
 
-	n = 0;
-	m = 0;
-	str = malloc(sizeof(char *) * ft_cst_strlen(s1) + ft_cst_strlen(s2) + 1);
+	if (!s1 && !s2)
+		return (NULL);
+	str = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (!str)
 		return (NULL);
+	n = 0;
+	m = 0;
 	while (s1[m])
 	{
 		str[n] = s1[m];

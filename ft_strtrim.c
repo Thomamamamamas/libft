@@ -6,22 +6,11 @@
 /*   By: tcasale <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 13:03:41 by tcasale           #+#    #+#             */
-/*   Updated: 2021/10/20 14:40:23 by tcasale          ###   ########.fr       */
+/*   Updated: 2021/11/05 16:30:09 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+#include "libft.h"
 #include <stdlib.h>
-#include <string.h>
-
-static size_t	ft_cst_strlen(const char *str)
-{
-	int	n;
-
-	n = 0;
-	while (str[n])
-		n++;
-	return (n);
-}
 
 static int	char_is_in_set(const char c, const char *set)
 {
@@ -37,20 +26,22 @@ static int	char_is_in_set(const char c, const char *set)
 	return (0);
 }
 
-char	*ft_strtrim(const char *s1, const char *set)
+char	*ft_strtrim(char const *s1, char const *set)
 {
 	size_t	start;
 	size_t	end;
 	size_t	n;
 	char	*str;
-
+	
+	if (!s1 || !set)
+		return (NULL);
 	start = 0;
-	end = ft_cst_strlen(s1);
+	end = ft_strlen(s1);
 	while (s1[start] && char_is_in_set(s1[start], set) == 1)
 		start++;
 	while (end > start && char_is_in_set(s1[end - 1], set) == 1)
 		end--;
-	str = malloc(sizeof(char *) * end - start + 1);
+	str = (char *)malloc(sizeof(char) * (end - start + 1));
 	if (!str)
 		return (NULL);
 	n = 0;

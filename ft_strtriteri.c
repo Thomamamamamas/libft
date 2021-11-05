@@ -6,8 +6,22 @@
 /*   By: tcasale <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 14:21:57 by tcasale           #+#    #+#             */
-/*   Updated: 2021/11/02 14:22:01 by tcasale          ###   ########.fr       */
+/*   Updated: 2021/11/05 13:12:55 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+void	ft_strtriteri(char *s, void (*f)(unsigned int, char*))
+{
+	int	n;
+
+	if (!s || !f)
+		return ;
+	n = 0;
+	while (s[n])
+	{
+		f(n, &s[n]);
+		n++;
+	}
+}

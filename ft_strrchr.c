@@ -6,7 +6,7 @@
 /*   By: tcasale <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 14:59:46 by tcasale           #+#    #+#             */
-/*   Updated: 2021/11/02 15:00:46 by tcasale          ###   ########.fr       */
+/*   Updated: 2021/11/05 11:36:42 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,15 @@ char	*ft_strrchr(char *s, int c)
 	tmp = -1;
 	while (s[i])
 	{
-		if (s[i] == c)
+		if (s[i] == (char)c)
 			tmp = i;
 		i = i + 1;
 	}
-	if (c == '\0')
+	if (s[i] == (char)c)
 		return ((char *) s + i);
-	else if (*s != -1)
+	if (tmp != -1)
 		return ((char *)s + tmp);
-	return (0);
+	return (NULL);
 }
 /*
 #include <string.h>

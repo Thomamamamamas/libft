@@ -1,42 +1,61 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tcasale <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/20 12:06:00 by tcasale           #+#    #+#             */
-/*   Updated: 2021/11/05 16:08:22 by tcasale          ###   ########.fr       */
+/*   Created: 2021/11/05 10:11:17 by tcasale           #+#    #+#             */
+/*   Updated: 2021/11/05 12:41:59 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 #include <stdlib.h>
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+static int	size_number(int n)
 {
-	char			*str;
-	size_t			i;
-	size_t			len_s;
-	
-	if (!s)
-		return (NULL);
-	len_s = ft_strlen(s);
-	if (start >= len_s)
+	int	res;
+
+	res = 0;
+	if (n < 0)
 	{
-		str = malloc(0);
-		*str = '\0';
-		return (str);
+		n = n * -1;
+		res++;
 	}
-	str = (char *)malloc(sizeof(char) * (len_s - start + 1));
+	while (n >= 10)
+	{
+		n = n / 10;
+		res++;
+	}
+	return (res);
+}
+
+char	*ft_itoa(int n)
+{
+	char	*str;
+	int		size;
+	int		neg;
+
+	neg = 0;
+	size = size_number(n);
+	if (n < 0)
+		neg = 1;
+	str = (char *)malloc(sizeof(char) * size + 1);
 	if (!str)
 		return (NULL);
-	i = 0;
-	while (s[i + start] && i < len)
+	str[size + 1] = '\0';
+	if (neg == 1)
 	{
-		str[i] = s[i + start];
-		i++;
+		str[0] = '-';
+		n = n * -1;
 	}
-	str[i] = '\0';
+	while (size >= neg)
+	{
+		str[size] = '0' + n % 10;
+		n = n / 10;
+		size--;
+	}
 	return (str);
 }
 /*
@@ -44,13 +63,10 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 
 int	main()
 {
-	char			s[] = "salut bande de putes";
-	char			*str;
-	unsigned int	start = 6;
-	size_t			len = 10;
+	int	n;
 
-	str = ft_substr(s, start, len);
-	printf("%s\n", str);
+	n = 4200;
+	printf("%s\n", ft_itoa(n));
 	return (0);
 }
 */

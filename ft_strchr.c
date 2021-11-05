@@ -5,27 +5,28 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tcasale <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/02 14:59:37 by tcasale           #+#    #+#             */
-/*   Updated: 2021/11/02 14:59:39 by tcasale          ###   ########.fr       */
+/*   Created: 2021/11/05 11:26:15 by tcasale           #+#    #+#             */
+/*   Updated: 2021/11/05 11:33:00 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include "libft.h"
 
-char	*ft_strchr(char *s, int c)
+char	*ft_strchr(const char *s, int c)
 {
-	int	i;
+	unsigned int	i;
 
 	i = 0;
 	while (s[i])
 	{
-		if (s[i] == c)
+		if (s[i] == (char)c)
 			return ((char *)s + i);
-		i = i + 1;
+		i++;
 	}
-	if (c != '\0')
-		return (0);
-	return ((char *)s + i);
+	if (s[i] == (char)c)
+		return ((char *)s + i);
+	return (NULL);
 }
 /*
 #include <string.h>

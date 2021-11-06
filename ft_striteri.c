@@ -1,36 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tcasale <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/02 16:16:31 by tcasale           #+#    #+#             */
-/*   Updated: 2021/11/06 14:55:17 by tcasale          ###   ########.fr       */
+/*   Created: 2021/11/06 13:32:11 by tcasale           #+#    #+#             */
+/*   Updated: 2021/11/06 14:12:24 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-void	ft_lstdelone(t_list *lst, void (*del) (void *))
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
-	if (!lst || !del)
+	unsigned int	i;
+
+	i = 0;
+	if (!s || !f)
 		return ;
-	(del) (lst->content);
-	free(lst);
+	while (s[i])
+	{
+		f(i, &s[i]);
+		i++;
+	}
 }
-/*
-#include <stdio.h>
-
-int	main()
-{
-	t_list	*un;
-
-	un = (t_list *)malloc(sizeof(t_list));
-	un->content = "pute";
-	ft_lstdelone(un, (*del)(un->next));
-	printf("%s\n", un->content);
-	return (0);
-}
-*/

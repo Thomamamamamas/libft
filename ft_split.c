@@ -6,124 +6,110 @@
 /*   By: tcasale <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 16:30:21 by tcasale           #+#    #+#             */
-/*   Updated: 2021/11/05 18:24:55 by tcasale          ###   ########.fr       */
+/*   Updated: 2021/11/06 13:27:52 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
-static int	count_word(char const *s, char c)
+static int	numstring(char const *s1, char c)
 {
-	int	n;
-	int	res;
-	int	start_count;
+	int	comp;
+	int	cles;
 
-	n = 0;
-	res = 0;
-	start_count = 0;
-	while (s[n])
+	comp = 0;
+	cles = 0;
+	if (*s1 == '\0')
+		return (0);
+	while (*s1 != '\0')
 	{
-		if (s[n] != c && start_count == 0)
-			start_count = 1;
-		if (s[n] == c && start_count == 1)
-			res++;
-		n++;
-	}
-	return (res);
-}
-
-static int	get_word_lenght(char const *s, char c, int n)
-{
-	int	start;
-	int	end;
-
-	start = n;
-	end = n;
-	while (s[end] != c)
-		end++;
-	return (end - start);
-}
-
-static int	get_word_index(char const *s, char c, int word)
-{
-	int	n;
-	int	m;
-	int	start_count;
-
-	n = 0;
-	m = 0;
-	start_count = 0;
-	while (s[n] && m < word)
-	{
-		if (s[n] != c && start_count == 0)
-			start_count = 1;
-		else if (s[n] == c && s[n + 1] != c && start_count == 1)
+		if (*s1 == c)
+			cles = 0;
+		else if (cles == 0)
 		{
-			n = n  + get_word_lenght(s, c, n + 1);
-			m++;
+			cles = 1;
+			comp++;
 		}
-		n++;
+		s1++;
 	}
-	return (n);
+	return (comp);
 }
 
-static int	malloc_word(char const *s, char c, int word, char **table)
+static int	numchar(char const *s2, char c, int i)
 {
-	int	n;
-	int	m;
+	int	lenght;
 
-	n = get_word_index(s, c, word);
-	m = get_word_lenght(s, c, n);
-	*table[word] = *((char *)malloc(sizeof(char) * (m + 1)));
-	return (1);
-}
-
-static void	put_in_table(char const *s, char c, char **table, int word)
-{
-	int	n;
-
-	n = get_word_index(s, c, word);
-	while (s[n] != c)
+	lenght = 0;
+	while (s2[i] != c && s2[i] != '\0')
 	{
-		*table[word] = s[n];
-		n++;
+		lenght++;
+		i++;
 	}
+	return (lenght);
 }
 
-char		**ft_split(char const *s, char c)
+char	**freee(char **dst, int j)
 {
-	int		word;
-	int		n;
-	char	**table;
-
-	if(!s)
-		return (NULL);
-	word = count_word(s, c);
-	table = (char **)malloc(sizeof(char *) * word + 1);
-	if (!table)
-		return (NULL);
-	table[word + 1] = NULL; 
-	n = 0;
-	while (n <= word)
+	while (j > 0)
 	{
-		malloc_word(s, c, n, table);
-		put_in_table(s, c, table, n);
-		n++;
+		j--;
+		free((void *)dst[j]);
 	}
-	n = 0;
-	return (table);
+	free(dst);
+	return (NULL);
 }
 
+static char	**affect(char const *s, char **dst, char c, int l)
+{
+	int	i;
+	int	j;
+	int	k;
+
+	i = 0;
+	j = 0;
+	while (s[i] != '\0' && j < l)
+	{
+		k = 0;
+		while (s[i] == c)
+			i++;
+		dst[j] = (char *)malloc(sizeof(char) * numchar(s, c, i) + 1);
+		if (dst[j] == NULL)
+			return (freee(dst, j));
+		while (s[i] != '\0' && s[i] != c)
+			dst[j][k++] = s[i++];
+		dst[j][k] = '\0';
+		j++;
+	}
+	dst[j] = 0;
+	return (dst);
+}
+
+char	**ft_split(char const *s, char c)
+{
+	char	**dst;
+	int		l;
+
+	if (s == NULL)
+		return (NULL);
+	l = numstring(s, c);
+	dst = (char **)malloc(sizeof(char *) * (l + 1));
+	if (dst == NULL)
+		return (NULL);
+	return (affect(s, dst, c, l));
+}
+
+/*
 #include <stdio.h>
 
 int	main()
 {
-	const char	s[] = "abcdafghaaaaijaklamnaaaaa";
-	char		c = 'a';
+	const char	s[] = "splitme";
+	char		c = ' ';
 	char		**table;
 
 	table = ft_split(s, c);
 	printf("%s\n", table[0]);
 	return (0);
 }
+*/

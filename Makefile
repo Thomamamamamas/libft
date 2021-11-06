@@ -18,6 +18,7 @@ ft_putchar_fd.c \
 ft_putendl_fd.c \
 ft_putnbr_fd.c \
 ft_putstr_fd.c \
+ft_split.c \
 ft_strcat.c \
 ft_strchr.c \
 ft_strcmp.c \
@@ -35,10 +36,20 @@ ft_strnstr.c \
 ft_strrchr.c \
 ft_strstr.c \
 ft_strtrim.c \
-ft_strtriteri.c \
+ft_striteri.c \
 ft_substr.c \
 ft_tolower.c \
-ft_toupper.c
+ft_toupper.c 
+
+BONUS	= ft_lstadd_front.c \
+ft_lstlast.c \
+ft_lstnew.c \
+ft_lstsize.c \
+ft_lstadd_back.c \
+ft_lstclear.c \
+ft_lstdelone.c \
+ft_lstiter.c \
+ft_lstmap.c
 
 OBJS	= ${SRCS:.c=.o}
 OBJS_BONUS = ${BONUS:.c=.o}

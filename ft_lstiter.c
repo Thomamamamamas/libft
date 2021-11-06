@@ -1,36 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tcasale <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/02 16:16:31 by tcasale           #+#    #+#             */
-/*   Updated: 2021/11/06 14:55:17 by tcasale          ###   ########.fr       */
+/*   Created: 2021/11/06 14:43:48 by tcasale           #+#    #+#             */
+/*   Updated: 2021/11/06 14:47:37 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-void	ft_lstdelone(t_list *lst, void (*del) (void *))
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	if (!lst || !del)
+	if (!lst || !f)
 		return ;
-	(del) (lst->content);
-	free(lst);
+	while (lst)
+	{
+		f(lst->content);
+		lst = lst->next;
+	}
 }
-/*
-#include <stdio.h>
-
-int	main()
-{
-	t_list	*un;
-
-	un = (t_list *)malloc(sizeof(t_list));
-	un->content = "pute";
-	ft_lstdelone(un, (*del)(un->next));
-	printf("%s\n", un->content);
-	return (0);
-}
-*/

@@ -14,14 +14,8 @@
 
 void	ft_bzero(void *s, size_t n)
 {
-	unsigned int	m;
-
-	m = 0;
-	while (m < n)
-	{
-		*((char *)s + m) = '\0';
-		m = m + 1;
-	}
+	if (n)
+		ft_memset(s, '\0', n);
 }
 /*
 #include <stdio.h>

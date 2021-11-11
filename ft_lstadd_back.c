@@ -17,10 +17,17 @@ void	ft_lstadd_back(t_list **alst, t_list *new)
 {
 	t_list	*back;
 
-	back = (t_list *)malloc(sizeof(t_list));
-	back = ft_lstlast(*alst);
+	back = *alst;
+	if (!*alst)
+	{
+		*alst = new;
+		return ;
+	}
+	if (!new)
+		return ;
+	while (back && back->next)
+		back = back->next;
 	back->next = new;
-	new->next = NULL;
 }
 /*
 #include <stdio.h>

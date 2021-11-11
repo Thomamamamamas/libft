@@ -5,16 +5,14 @@ int	ft_lstsize(t_list *lst)
 	int	n;
 
 	n = 0;
-	while(lst->next != NULL)
+	while (lst)
 	{
 		lst = lst->next;
 		n++;
 	}
-	n++;
 	return (n);
 }
 
-#include <stdio.h>
 /*
 int	main()
 {

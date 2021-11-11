@@ -20,7 +20,7 @@ void	ft_putnbr_fd(int n, int fd)
 	if (lln < 0)
 	{
 		ft_putchar_fd('-', fd);
-		lln = lln * - 1;
+		lln = lln * -1;
 	}
 	if (lln > 9)
 	{

@@ -6,20 +6,18 @@
 /*   By: tcasale <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 14:37:34 by tcasale           #+#    #+#             */
-/*   Updated: 2021/11/05 12:27:34 by tcasale          ###   ########.fr       */
+/*   Updated: 2021/11/13 15:18:06 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "string.h"
+#include "libft.h"
 
 size_t	ft_strlen(const char *s)
 {
-	unsigned int	n;
+	size_t	n;
 
 	n = 0;
-	if (!s)
-		return (0);
 	while (s[n])
-		n = n + 1;
+		n++;
 	return (n);
 }

@@ -6,7 +6,7 @@
 /*   By: tcasale <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 15:44:53 by tcasale           #+#    #+#             */
-/*   Updated: 2021/11/05 15:45:55 by tcasale          ###   ########.fr       */
+/*   Updated: 2021/11/13 15:23:50 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void	*ft_calloc(size_t nmemb, size_t size)
 {
 	void	*ptr;
 
-	ptr = (void *)malloc(nmemb * size);
-	if (!ptr || nmemb == 0 || size == 0)
+	ptr = malloc(nmemb * size);
+	if (!ptr)
 		return (NULL);
-	bzero(ptr, nmemb);
+	ft_bzero(ptr, nmemb * size);
 	return (ptr);
 }

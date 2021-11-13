@@ -6,47 +6,40 @@
 /*   By: tcasale <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 15:03:50 by tcasale           #+#    #+#             */
-/*   Updated: 2021/11/05 15:12:17 by tcasale          ###   ########.fr       */
+/*   Updated: 2021/11/13 15:50:53 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
 
-int	ft_atoi(const char *nptr)
+int	ft_is_numeric(char c)
 {
-	int	res;
-	int	signe;
-	int	n;
-
-	n = 0;
-	signe = 0;
-	res = 0;
-	while (nptr[n] == ' ' || (nptr[n] >= 0 && nptr[n] <= 32))
-		n++;
-	if (nptr[n] == '-' || nptr[n] == '+')
-	{
-		if (nptr[n] == '-')
-			signe = 1 - signe;
-		n++;
-	}
-	while (nptr[n] >= 48 && nptr[n] <= 57)
-	{
-		res = res * 10 + nptr[n] - 48;
-		n++;
-	}
-	if (signe == 1)
-		res = res * -1;
-	return (res);
-}
-/*
-#include <stdio.h>
-#include <stdlib.h>
-
-int	main()
-{
-	char n[] = "\n    +42222229";
-	printf("%d\n", atoi(n));
-	printf("%d\n", ft_atoi(n));
+	if (c >= '0' && c <= '9')
+		return (1);
 	return (0);
 }
-*/
+
+int	ft_atoi(const char *str)
+{
+	int	i;
+	int	result;
+	int	negative;
+
+	i = 0;
+	result = 0;
+	negative = 1;
+	while (str[i] == ' ' || str[i] == '\n' || str[i] == '\r' \
+	|| str[i] == '\t' || str[i] == '\v' || str[i] == '\f')
+		i++;
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			negative = -1;
+		i++;
+	}
+	while (str[i] && ft_is_numeric(str[i]))
+	{
+		result = result * 10 + (str[i] - 48);
+		i++;
+	}
+	return (result * negative);
+}

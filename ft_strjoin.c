@@ -6,7 +6,7 @@
 /*   By: tcasale <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 12:57:17 by tcasale           #+#    #+#             */
-/*   Updated: 2021/11/05 16:20:21 by tcasale          ###   ########.fr       */
+/*   Updated: 2021/11/13 15:35:24 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	size_t	m;
 	char	*str;
 
-	if (!s1 && !s2)
+	if (!s1 || !s2)
 		return (NULL);
 	str = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (!str)

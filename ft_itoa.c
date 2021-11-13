@@ -6,78 +6,63 @@
 /*   By: tcasale <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 10:11:17 by tcasale           #+#    #+#             */
-/*   Updated: 2021/11/06 14:26:12 by tcasale          ###   ########.fr       */
+/*   Updated: 2021/11/13 15:50:30 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
 #include <stdlib.h>
 
-static int	size_number(long long int n)
+int	len(int n)
 {
-	int	res;
+	int	len;
 
-	res = 0;
+	len = 1;
 	if (n < 0)
 	{
 		n = n * -1;
-		res++;
+		len++;
 	}
 	while (n >= 10)
 	{
 		n = n / 10;
-		res++;
+		len++;
 	}
-	return (res);
+	return (len);
 }
 
-static char	*fill_char(char *str, long long int n, int size)
+char	*overflow(int n)
 {
-	int	neg;
-
-	str[size + 1] = '\0';
-	if (n < 0)
-		neg = 1;
+	if (n == -2147483648)
+		return (ft_strdup("-2147483648"));
 	else
-		neg = 0;
-	if (neg == 1)
-	{
-		str[0] = '-';
-		n = n * -1;
-	}
-	while (size >= neg)
-	{
-		str[size] = '0' + n % 10;
-		n = n / 10;
-		size--;
-	}
-	return (str);
+		return (ft_strdup("2147483647"));
 }
 
 char	*ft_itoa(int n)
 {
-	long long int		lln;
-	char				*str;
-	int					size;
-	int					neg;
+	char	*str;
+	int		i;
 
-	lln = n;
-	neg = 0;
-	size = size_number(lln);
-	str = (char *)malloc(sizeof(char) * size + 1);
+	if (n == -2147483648 || n == 2147483647)
+		return (overflow(n));
+	str = malloc(sizeof(char) * len(n) + 1);
 	if (!str)
 		return (NULL);
-	return (fill_char(str, lln, size));
+	if (n == 0)
+		str[0] = '0';
+	i = len(n);
+	if (n < 0)
+	{
+		str[0] = '-';
+		n = n * -1 ;
+	}
+	str[i] = '\0';
+	i--;
+	while (n > 0)
+	{
+		str[i] = (n % 10) + 48;
+		n = n / 10;
+		i--;
+	}
+	return (str);
 }
-/*
-#include <stdio.h>
-
-int	main()
-{
-	int	n;
-
-	n = -4200;
-	printf("%s\n", ft_itoa(n));
-	return (0);
-}
-*/

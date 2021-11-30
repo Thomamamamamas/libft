@@ -20,6 +20,7 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
+//Mandatory
 void		*ft_memset(void *s, int c, size_t n);
 void		ft_bzero(void *s, size_t n);
 void		*ft_calloc(size_t nmemb, size_t size);
@@ -62,6 +63,9 @@ void		ft_putstr_fd(char *s, int fd);
 void		ft_putendl_fd(char *s, int fd);
 void		ft_putnbr_fd(int n, int fd);
 
+
+//Bonus 
+
 void		ft_lstadd_front(t_list **alst, t_list *new);
 t_list		*ft_lstlast(t_list *lst);
 t_list		*ft_lstnew(void *content);
@@ -71,5 +75,11 @@ void		ft_lstdelone(t_list *lst, void (*del) (void *));
 void		ft_lstclear(t_list **lst, void (*del)(void *));
 void		ft_lstiter(t_list *lst, void (*f)(void *));
 t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+
+//Supplement
+
+int			ft_is_sort(int *tab, size_t lenght);
+char		*ft_itoa_base(int n, size_t base);
+
 
 #endif

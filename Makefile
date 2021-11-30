@@ -46,6 +46,8 @@ ft_strtrim.c \
 ft_substr.c \
 ft_tolower.c \
 ft_toupper.c \
+ft_is_sort.c \
+ft_itoa_base.c
 
 BONUS	= ft_lstadd_back.c \
 ft_lstadd_front.c \

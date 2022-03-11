@@ -1,29 +1,35 @@
-#include <unistd.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tcasale <tcasale@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/11 19:36:01 by tcasale           #+#    #+#             */
+/*   Updated: 2022/03/11 19:36:04 by tcasale          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+#include "libft.h"
 
-void	ft_putchar(char c)
+int	ft_putnbr(int n)
 {
-	write(1, &c, 1);
-}
+	long long int	lln;
+	int				len;
 
-void	ft_putnbr(int	nb)
-{
-
-	if (nb < 0)
+	lln = n;
+	len = 0;
+	if (lln < 0)
 	{
 		ft_putchar('-');
-		nb = nb * - 1;
+		lln = lln * -1;
+		len++;
 	}
-	if (nb > 9)
+	if (lln > 9)
 	{
-		ft_putnbr(nb / 10);
-		nb = nb % 10;
+		ft_putnbr(lln / 10);
+		lln = lln % 10;
+		len++;
 	}
-	ft_putchar(nb + '0');
+	ft_putchar(lln + '0');
+	return (len++);
 }
-/*
-int	main()
-{
-	ft_putnbr(-42099);
-	return (0);
-}
-*/

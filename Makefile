@@ -6,7 +6,7 @@
 #    By: tcasale <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/13 14:52:20 by tcasale           #+#    #+#              #
-#    Updated: 2021/11/13 15:41:25 by tcasale          ###   ########.fr        #
+#    Updated: 2022/03/11 19:56:48 by tcasale          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,8 +46,6 @@ ft_strtrim.c \
 ft_substr.c \
 ft_tolower.c \
 ft_toupper.c \
-ft_is_sort.c \
-ft_itoa_base.c
 
 BONUS	= ft_lstadd_back.c \
 ft_lstadd_front.c \
@@ -57,10 +55,21 @@ ft_lstiter.c \
 ft_lstlast.c \
 ft_lstmap.c \
 ft_lstnew.c \
-ft_lstsize.c \
+ft_lstsize.c 
+
+SUPP	= ft_putchar.c \
+ft_putstr.c \
+ft_putnbr.c \
+ft_putnbr_unsigned.c \
+ft_putadress.c \
+ft_puthexa_upper.c \
+ft_puthexa_lower.c \
+ft_itoa_base.c \
+ft_is_sort.c \
 
 OBJS	= ${SRCS:.c=.o}
 OBJS_BONUS = ${BONUS:.c=.o}
+OBJS_SUPP = ${SUPP:.c=.o}
 
 HEADER	= includes
 
@@ -75,14 +84,14 @@ CFLAGS = -Wall -Wextra -Werror
 
 all: $(NAME)
 
-$(NAME):	$(OBJS)
+$(NAME):	$(OBJS) $(OBJS_SUPP)
 			$(AR) $@ $^
 
-bonus:	$(OBJS) ${OBJS_BONUS}
+bonus:	$(OBJS) ${OBJS_BONUS} $(OBJS_SUPP) 
 			$(AR) ${NAME} $^
 
 clean:
-		${RM} ${OBJS} ${OBJS_BONUS}
+		${RM} ${OBJS} ${OBJS_BONUS} ${OBJS_SUPP}
 
 fclean:	clean
 		${RM} ${NAME}

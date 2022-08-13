@@ -1,35 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr_unsigned.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tcasale <tcasale@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/11 19:36:01 by tcasale           #+#    #+#             */
-/*   Updated: 2022/03/11 19:36:04 by tcasale          ###   ########.fr       */
+/*   Created: 2022/03/11 19:42:18 by tcasale           #+#    #+#             */
+/*   Updated: 2022/03/11 20:03:50 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-int	ft_putnbr(int n)
+int	ft_putnbr_unsigned(int n)
 {
-	long long int	lln;
+	unsigned int	nb;
 	int				len;
 
-	lln = n;
 	len = 0;
-	if (lln < 0)
+	if (n < 0)
 	{
-		ft_putchar('-');
-		lln = lln * -1;
-		len++;
+		nb = n + UINT_MAX + 1;
 	}
-	if (lln > 9)
+	else
+		nb = n;
+	if (nb > 9)
 	{
-		ft_putnbr(lln / 10);
-		lln = lln % 10;
-		len++;
+		len += ft_putnbr_unsigned(nb / 10);
+		nb = nb % 10;
 	}
-	ft_putchar(lln + '0');
-	return (len++);
+	len += ft_putchar(nb + '0');
+	return (len);
 }

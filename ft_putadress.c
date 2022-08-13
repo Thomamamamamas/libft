@@ -1,35 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_putadress.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tcasale <tcasale@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/11 19:36:01 by tcasale           #+#    #+#             */
-/*   Updated: 2022/03/11 19:36:04 by tcasale          ###   ########.fr       */
+/*   Created: 2022/03/11 19:47:16 by tcasale           #+#    #+#             */
+/*   Updated: 2022/03/11 19:51:18 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-int	ft_putnbr(int n)
+int	ft_putadressi(unsigned long long n)
 {
-	long long int	lln;
-	int				len;
+	char	*caracters;
+	int		len;
 
-	lln = n;
+	caracters = "0123456789abcdef";
 	len = 0;
-	if (lln < 0)
+	if (n >= 16)
 	{
-		ft_putchar('-');
-		lln = lln * -1;
-		len++;
+		len += ft_putnbr(n / 16);
+		len += ft_putchar(caracters[n % 16]);
 	}
-	if (lln > 9)
-	{
-		ft_putnbr(lln / 10);
-		lln = lln % 10;
-		len++;
-	}
-	ft_putchar(lln + '0');
-	return (len++);
+	else
+		len += ft_putchar(caracters[n % 16]);
+	return (len);
 }

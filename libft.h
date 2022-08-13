@@ -6,13 +6,14 @@
 /*   By: tcasale <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/13 15:39:45 by tcasale           #+#    #+#             */
-/*   Updated: 2021/11/13 15:39:46 by tcasale          ###   ########.fr       */
+/*   Updated: 2022/03/11 20:03:31 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 # include <stddef.h>
+# include <limits.h>
 
 typedef struct s_list
 {
@@ -78,7 +79,16 @@ t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
 //Supplement
 
+int			ft_putchar(char c);
+int			ft_putstr(char *str);
+int			ft_putnbr(int n);
+int			ft_putnbr_unsigned(int n);
+int			ft_putadress(unsigned long long n);
+int			ft_puthexa_upper(long long n);
+int			ft_puthexa_lower(long long n);
+
 int			ft_is_sort(int *tab, size_t lenght);
+
 char		*ft_itoa_base(int n, size_t base);
 
 

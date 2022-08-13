@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtriteri.c                                    :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcasale <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: tcasale <tcasale@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/02 14:21:57 by tcasale           #+#    #+#             */
-/*   Updated: 2021/11/05 13:12:55 by tcasale          ###   ########.fr       */
+/*   Created: 2022/03/11 19:37:05 by tcasale           #+#    #+#             */
+/*   Updated: 2022/03/11 19:39:22 by tcasale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
 
-void	ft_strtriteri(char *s, void (*f)(unsigned int, char*))
+int	ft_putstr(char *str)
 {
-	int	n;
+	size_t	n;
+	int		len;
 
-	if (!s || !f)
-		return ;
 	n = 0;
-	while (s[n])
+	len = 0;
+	while (str[n])
 	{
-		f(n, &s[n]);
-		n++;
+		ft_putchar(str[n]);
+		len++;
 	}
+	return (len);
 }
